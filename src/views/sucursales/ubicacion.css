@@ -1,0 +1,4 @@
+.leaflet-popup-content{
+    margin: 0 !important;
+    display: flex;
+}

@@ -1,26 +1,63 @@
-/* 
-.swiper-wrapper{
-    align-items: center;
-} */
-/* .swiper-wrapper */
-.swiper-slide{
+.swiper-slide {
     display: flex !important;
 }
-.swiper-pagination
-.swiper-pagination-bullet-active-main{
+
+.swiper-pagination .swiper-pagination-bullet-active-main {
     background-color: var(--red-my);
 }
+
 .swiper-button-prev,
 .swiper-button-next {
     opacity: 0;
 }
+
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
     opacity: 1;
 }
 
-.card-body div{
+#home-offers
+.card-body 
+div:first-child{
     height: 100%;
     display: flex !important;
     align-items: center;
+}
+
+#home-faster-menu
+div:hover
+img{
+    scale: 0.9;
+}
+
+
+
+@media screen and (min-width: 400px) {
+    #yt {
+        height: 300px !important;
+    }
+
+    #yt .youtube-iframe iframe {
+        height: 300px !important;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    #yt {
+        height: 325px !important;
+    }
+
+    #yt .youtube-iframe iframe {
+        height: 325px !important;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    #yt {
+        height: 400px !important;
+    }
+
+    #yt .youtube-iframe iframe {
+        height: 400px !important;
+    }
 }

@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Button, ButtonGroup, Divider, Image } from "@nextui-org/react";
 
 import logo from '../../../assets/imgs/logo-color.png'
-import instagram from '../../../assets/icons/icons8-instagram-240.svg'
-import facebook from '../../../assets/icons/icons8-facebook-240.svg'
-import youtube from '../../../assets/icons/icons8-youtube-play-240.svg'
-import whatsapp from '../../../assets/icons/icons8-whatsapp-240.svg'
-import linkedin from '../../../assets/icons/icons8-linkedin-240.svg'
-import gmail from '../../../assets/icons/icons8-gmail-240.svg'
+import { socials } from '../../../assets/icons/icons';
+
+import { useNavigate } from "react-router-dom";
 
 
 function Footer() {
-  // const iconsName = ['instagram','facebook','youtube', 'whatsapp','linkedin','gmail']
-  
-  const icons = [instagram, facebook, youtube, whatsapp, linkedin, gmail]
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
 
   const sections = ['Encontranos', 'Conocenos', 'Contactanos']
 
@@ -35,6 +31,18 @@ function Footer() {
     ],
   }
 
+  const social =
+    <div className='lg:flex justify-center'>
+      <div className='pt-2 grid grid-cols-3 sm:grid-cols-6 lg:gap-10 max-w-[900px]'>
+        {socials.map((i) =>
+          <div key={i} className='flex justify-center'>
+            <Image src={i} alt={i} className='w-[70px] cursor-pointer hover:scale-90' />
+          </div>
+        )}
+      </div>
+    </div>
+
+
   const movePage = () => {
     const total = document.documentElement.scrollHeight
     const current = window.scrollY
@@ -45,6 +53,26 @@ function Footer() {
     }
     window.scroll(0, y)
   }
+
+  const floatAcctions =
+    <ButtonGroup variant='ghost' className=' opacity-25 hover:opacity-100 fixed bottom-[10px] right-[10px] z-10' >
+      <Button isIconOnly color='danger' onClick={() => navigate('/ofertas')}>
+        <i className="bi bi-fire"></i>
+      </Button>
+      <Button isIconOnly color='success'>
+        <i className="bi bi-whatsapp"></i>
+      </Button>
+      <Button isIconOnly color='primary' onClick={movePage}>
+        <i className="bi bi-arrow-down-up"></i>
+      </Button>
+    </ButtonGroup>
+
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      setLoading(false)
+    })
+  })
 
 
   return (
@@ -58,15 +86,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className='lg:flex justify-center'>
-          <div className='pt-2 grid grid-cols-3 sm:grid-cols-6 lg:gap-10 max-w-[900px]'>
-            {icons.map((i) =>
-              <div key={i} className='flex justify-center'>
-                <Image src={i} alt={i} className='w-[70px] cursor-pointer hover:scale-90' />
-              </div>
-            )}
-          </div>
-        </div>
+        {!loading && social}
 
         <div className='flex flex-col justify-around sm:flex-row'>
           {sections.map((x, i) =>
@@ -80,23 +100,13 @@ function Footer() {
         </div>
       </div>
 
-      <div className='flex justify-center py-1 text-gray-400 bg-gradient-to-b from-warning'>
+      <div className='flex justify-center py-1 text-gray bg-gradient-to-b from-warning to-white'>
         <div>GP Web</div>
         <Divider className='h-auto mx-1' orientation="vertical" />
         <div>© 2023 Kotar, Inc</div>
       </div>
 
-      <ButtonGroup variant='ghost' className=' opacity-25 hover:opacity-100 fixed bottom-[10px] right-[10px] z-10' >
-        <Button isIconOnly color='danger'>
-          <i className="bi bi-fire"></i>
-        </Button>
-        <Button isIconOnly color='success'>
-          <i className="bi bi-whatsapp"></i>
-        </Button>
-        <Button isIconOnly color='primary' onClick={movePage}>
-          <i className="bi bi-arrow-down-up"></i>
-        </Button>
-      </ButtonGroup>
+      {!loading && floatAcctions}
 
     </footer>
   );
